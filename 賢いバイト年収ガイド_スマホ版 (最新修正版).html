@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>親の扶養を外れない！賢いバイト年収＆シフト管理ガイド（スマホ版）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#4A1E7A;
+    --purple:#7B3FE4;
+    --pink:#EC4899;
+    --lavender:#F3E8FF;
+    --lavender-line:#E4D2FA;
+    --ink:#2B1B4A;
+    --ink-soft:#6B5B8A;
+    --danger:#E8590C;
+    --danger-bg:#FFF1E8;
+    --warn:#D97706;
+    --warn-bg:#FFF7E6;
+    --safe:#0D9488;
+    --safe-bg:#ECFDF9;
+    --white:#FFFFFF;
+    --shadow: 0 10px 24px -10px rgba(74,30,122,.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:"Noto Sans JP","Zen Kaku Gothic New",sans-serif;
+    background:#FEFBFF;
+    color:var(--ink);
+    line-height:1.7;
+    max-width:480px;
+    margin:0 auto;
+    -webkit-font-smoothing:antialiased;
+  }
+  .px{padding-left:20px; padding-right:20px;}
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    background: radial-gradient(130% 100% at 20% 0%, #9D4EDD 0%, #7B3FE4 35%, #5B21B6 65%, #3D1466 100%);
+    color:#fff;
+    padding:36px 20px 40px;
+  }
+  .personal-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11px; font-weight:700; letter-spacing:.12em;
+    color:#F3E8FF; opacity:.85; margin-bottom:14px;
+    text-transform:uppercase;
+  }
+  .personal-tag::before{content:"";width:16px; height:1px; background:rgba(255,255,255,.5);}
+  .to-line{
+    font-size:14px; font-weight:500; color:#EAD9FF; margin-bottom:6px;
+  }
+  .to-line b{
+    font-weight:900; color:#fff; font-size:16px;
+    border-bottom:2px solid rgba(255,255,255,.5); padding-bottom:1px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);
+    padding:6px 16px; border-radius:999px;
+    font-size:12.5px; font-weight:700;
+    margin:14px 0 18px;
+  }
+  .hero h1{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900; font-size:27px; line-height:1.5;
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,#FFD9EE,#FFFFFF 60%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{margin-top:14px; font-size:14px; color:#EAD9FF;}
+
+  .badge-scroll{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+    margin-top:22px;
+  }
+  .hero-badge{
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28);
+    border-radius:13px; padding:10px 6px;
+    font-size:11px; font-weight:700; line-height:1.35;
+    text-align:center;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .gauge-card{
+    margin-top:26px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:18px;
+    padding:18px 18px 16px;
+  }
+  .gauge-label{font-size:12px; font-weight:700; color:#F3E8FF; margin-bottom:26px;}
+  .gauge-track{position:relative; height:12px; border-radius:999px;
+    background:linear-gradient(90deg,#22D3B6 0%, #22D3B6 60%, #FBBF24 78%, #FB7185 88%, #E11D48 100%);
+  }
+  .gauge-mark{position:absolute; top:-8px; left:83.75%; width:2px; height:28px; background:rgba(255,255,255,.6);}
+  .gauge-tag{
+    position:absolute; top:-40px; left:0; transform:translateX(-46%);
+    background:#fff; color:var(--danger); font-weight:900; font-size:11.5px;
+    padding:5px 9px; border-radius:8px; white-space:nowrap; box-shadow:var(--shadow);
+  }
+  .gauge-scale{display:flex; justify-content:space-between; margin-top:10px; font-size:10.5px; color:#DCC8FF;}
+  .gauge-scale span:nth-child(2),.gauge-scale span:nth-child(3){display:none;}
+
+  /* SECTIONS */
+  section{padding:40px 20px;}
+  .section-head{margin-bottom:22px; display:flex; align-items:center; gap:14px;}
+  .section-icon{
+    width:44px; height:44px; border-radius:13px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+    box-shadow:var(--shadow);
+  }
+  .kicker{display:block; font-size:11.5px; font-weight:700; color:var(--pink); letter-spacing:.06em; margin-bottom:2px;}
+  .section-head h2{font-family:"Zen Kaku Gothic New",sans-serif; font-size:19px; font-weight:900; line-height:1.4;}
+
+  .stack{display:flex; flex-direction:column; gap:16px;}
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--lavender-line);
+    border-radius:18px;
+    padding:22px 20px;
+    box-shadow:0 6px 16px -10px rgba(74,30,122,.2);
+  }
+  .card .tag{display:inline-block; font-size:11.5px; font-weight:700; padding:4px 12px; border-radius:999px; margin-bottom:12px;}
+  .tag.purple{background:var(--lavender); color:var(--purple-deep);}
+  .tag.pink{background:#FCE7F3; color:#BE185D;}
+  .card h3{font-size:17px; font-weight:900; margin-bottom:8px;}
+  .highlight-line{background:var(--lavender); border-radius:10px; padding:10px 14px; font-weight:700; font-size:13.5px; color:var(--purple-deep); margin:12px 0;}
+  .highlight-line.pink{background:#FCE7F3; color:#BE185D;}
+  .card p.desc{font-size:13.5px; color:var(--ink-soft);}
+
+  .wall-card{
+    background:var(--white); border-radius:18px; padding:22px 20px;
+    border:2px solid var(--lavender-line);
+    box-shadow:0 6px 16px -10px rgba(74,30,122,.16);
+  }
+  .wall-card.danger{
+    border-color:var(--danger);
+    background:linear-gradient(180deg,#FFF9F5,#FFFFFF);
+    box-shadow:0 12px 26px -12px rgba(232,89,12,.4);
+  }
+  .wall-badge{display:inline-block; background:var(--danger); color:#fff; font-size:11px; font-weight:900; padding:4px 11px; border-radius:999px; margin-bottom:12px;}
+  .wall-num{font-family:"Zen Kaku Gothic New",sans-serif; font-size:32px; font-weight:900; color:var(--danger);}
+  .wall-card:not(.danger) .wall-num{color:var(--purple);}
+  .wall-name{font-size:13.5px; font-weight:700; color:var(--ink-soft); margin:5px 0 14px;}
+  .wall-card ul{padding-left:16px; font-size:13px; color:var(--ink-soft); display:flex; flex-direction:column; gap:6px;}
+  .wall-note{margin-top:14px; font-size:12.5px; color:var(--ink-soft); background:var(--lavender); border-radius:12px; padding:12px 14px;}
+  .wall-note b{color:var(--purple-deep);}
+
+  .info-box{
+    background:linear-gradient(120deg,var(--lavender),#FDF2F8);
+    border:1px solid var(--lavender-line);
+    border-left:5px solid var(--purple);
+    border-radius:16px; padding:20px; margin-bottom:16px;
+  }
+  .info-box h3{font-size:15.5px; font-weight:900; color:var(--purple-deep); margin-bottom:8px;}
+  .info-box p{font-size:13.5px; color:var(--ink-soft);}
+  .sub-card{background:var(--white); border:1px solid var(--lavender-line); border-radius:14px; padding:18px; margin-bottom:14px;}
+  .sub-card h4{font-size:13.5px; font-weight:900; margin-bottom:6px;}
+  .sub-card p{font-size:13px; color:var(--ink-soft);}
+
+  .shift-card{border-radius:18px; padding:24px 20px; color:#fff; margin-bottom:16px;}
+  .shift-card.normal{background:linear-gradient(135deg,#7B3FE4,#5B21B6);}
+  .shift-card.holiday{background:linear-gradient(135deg,#EC4899,#DB2777);}
+  .shift-card .label{font-size:12.5px; font-weight:700; opacity:.9; margin-bottom:10px;}
+  .shift-card .amount{font-family:"Zen Kaku Gothic New",sans-serif; font-size:26px; font-weight:900; margin-bottom:8px;}
+  .shift-card p{font-size:13px; opacity:.92;}
+
+  /* ---------- CALCULATOR ---------- */
+  .calc-card{
+    background:linear-gradient(160deg,#3D1466,#5B21B6 45%,#9D4EDD);
+    border-radius:22px; padding:26px 20px 24px;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .calc-card::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(closest-side, rgba(236,72,153,.35), transparent) 90% 0%/220px 220px no-repeat;
+  }
+  .calc-inner{position:relative; z-index:2;}
+  .calc-title{font-size:15.5px; font-weight:900; margin-bottom:4px; display:flex; align-items:center; gap:8px;}
+  .calc-sub{font-size:12px; color:#E9D8FF; margin-bottom:20px;}
+
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block; font-size:12.5px; font-weight:700; color:#F3E8FF; margin-bottom:7px;
+  }
+  .field .input-row{position:relative;}
+  .field input{
+    width:100%; padding:12px 52px 12px 14px; border-radius:12px; border:none;
+    font-size:15px; font-weight:700; color:var(--ink);
+    background:rgba(255,255,255,.95);
+    -webkit-appearance:none;
+  }
+  .field input:focus{outline:2px solid #FFD9EE;}
+  .field .unit{
+    position:absolute; right:14px; top:50%; transform:translateY(-50%);
+    font-size:12.5px; font-weight:700; color:var(--ink-soft);
+  }
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+
+  .result{
+    margin-top:22px; background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.28); border-radius:16px;
+    padding:20px 18px;
+    backdrop-filter:blur(6px);
+  }
+  .result-status{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:900; padding:5px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .status-safe{background:var(--safe-bg); color:var(--safe);}
+  .status-warn{background:var(--warn-bg); color:var(--warn);}
+  .status-danger{background:var(--danger-bg); color:var(--danger);}
+
+  .result-main{display:flex; align-items:baseline; gap:6px; margin-bottom:4px;}
+  .result-main .num{font-family:"Zen Kaku Gothic New",sans-serif; font-size:30px; font-weight:900;}
+  .result-main .unit2{font-size:14px; font-weight:700; color:#E9D8FF;}
+  .result-caption{font-size:11.5px; color:#DCC8FF; margin-bottom:16px;}
+
+  .mini-gauge-track{position:relative; height:10px; border-radius:999px; margin-top:6px;
+    background:linear-gradient(90deg,#22D3B6 0%, #22D3B6 60%, #FBBF24 78%, #FB7185 88%, #E11D48 100%);
+  }
+  .mini-gauge-mark{position:absolute; top:-6px; width:2px; height:22px; background:#fff; transition:left .25s ease;}
+
+  .result-rows{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
+  .result-rows .row{display:flex; justify-content:space-between; font-size:12.5px; color:#F3E8FF;}
+  .result-rows .row b{font-size:13.5px; color:#fff; font-weight:900;}
+
+  .copy-btn{
+    margin-top:18px; width:100%; padding:13px; border-radius:12px; border:none;
+    background:#fff; color:var(--purple-deep); font-weight:900; font-size:13.5px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .copy-btn:active{transform:scale(.98);}
+  .calc-disclaimer{margin-top:14px; font-size:10.5px; color:#DCC8FF; line-height:1.6;}
+
+  /* footer / closing letter */
+  footer{background:var(--purple-deep); color:#fff; padding:40px 24px 36px; text-align:center;}
+  .close-mark{width:34px; height:34px; margin:0 auto 16px; opacity:.7;}
+  footer .fname{font-weight:900; font-size:16px; margin-bottom:10px; line-height:1.6;}
+  footer p{font-size:12.5px; color:#DCC8FF; line-height:1.8;}
+  footer .sign{margin-top:22px; font-size:11.5px; color:#B8A0E8; letter-spacing:.08em;}
+
+  .icon{width:22px; height:22px; flex:none;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="personal-tag">MY INCOME GUIDE ・ 2026</div>
+  <div class="to-line">To. <b id="nameSlot">〇〇</b> さん</div>
+
+  <span class="eyebrow">🎓 19〜23歳 昼間学生向け</span>
+  <h1>親の扶養を外れない！<br><span>賢いバイト年収＆シフト管理ガイド</span></h1>
+  <p class="lead">損をしないために知っておくべき「年収の壁」と「働き方のコツ」を3分でチェック。</p>
+
+  <div class="badge-scroll">
+    <div class="hero-badge">💰<br>税金は<br>年間合計</div>
+    <div class="hero-badge">🗓️<br>社保は<br>毎月判定</div>
+    <div class="hero-badge">🛡️<br>学生は<br>加入免除</div>
+  </div>
+
+  <div class="gauge-card">
+    <div class="gauge-label">年収の壁マップ（0〜160万円）</div>
+    <div class="gauge-track">
+      <div class="gauge-mark"><div class="gauge-tag">150万円 社保の壁</div></div>
+    </div>
+    <div class="gauge-scale"><span>0万円</span><span>134万</span><span>150万</span><span>159万円</span></div>
+  </div>
+</header>
+
+<section id="basic">
+  <div class="section-head">
+    <div class="section-icon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v2h16V7l-8-4z" fill="#fff"/><path d="M5 10h2v8H5v-8zm4 0h2v8H9v-8zm4 0h2v8h-2v-8zm4 0h2v8h-2v-8z" fill="#fff"/><path d="M4 20h16v2H4v-2z" fill="#fff"/></svg>
+    </div>
+    <div><span class="kicker">STEP 01</span><h2>「税金」と「社会保険」の計算ルール</h2></div>
+  </div>
+  <div class="stack">
+    <div class="card">
+      <span class="tag purple">税金（所得税・住民税）</span>
+      <h3>💰 「1年間の合計」でみる</h3>
+      <div class="highlight-line">1月〜12月の給料の合計で計算</div>
+      <p class="desc">夏休みにドカンと稼いでも、1年間の合計が枠内（150万円等）に収まっていれば問題ありません！</p>
+    </div>
+    <div class="card">
+      <span class="tag pink">社会保険（健康保険・年金）</span>
+      <h3>🗓️ 「毎月の給料」でみる</h3>
+      <div class="highlight-line pink">毎月のシフトペースが重要</div>
+      <p class="desc">年間合計だけでなく、「毎月いくら稼いでいるか」をチェックされます。毎月の安定した管理が大切です！</p>
+    </div>
+  </div>
+</section>
+
+<section id="walls">
+  <div class="section-head">
+    <div class="section-icon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v5c0 5-3.4 8.7-8 11-4.6-2.3-8-6-8-11V6l8-4z" fill="#fff"/></svg>
+    </div>
+    <div><span class="kicker">STEP 02</span><h2>意識すべき年収の壁</h2></div>
+  </div>
+  <div class="stack">
+    <div class="wall-card danger">
+      <span class="wall-badge">絶対超えちゃダメ！</span>
+      <div class="wall-num">150万円</div>
+      <div class="wall-name">親の社会保険の壁</div>
+      <ul>
+        <li>超えると大損！ 親の健康保険から外れ、自分で年間約20万〜の保険料を払うことに。</li>
+        <li>毎月の目安：月12.5万円以内</li>
+      </ul>
+    </div>
+    <div class="wall-card">
+      <div class="wall-num">159万円</div>
+      <div class="wall-name">親の税金控除の壁</div>
+      <ul>
+        <li>19〜23歳は159万円まで親の税金が安くなる（特定親族特別控除）。</li>
+        <li>※ただし150万円を超えると社保で損をするため、実質は150万円が上限！</li>
+      </ul>
+    </div>
+  </div>
+  <p class="wall-note">※参考：本人の住民税は勤労学生控除により<b>134万円</b>までかからないのが目安です（自治体により100万円超で均等割が数千円発生する場合あり）。</p>
+</section>
+
+<section id="rule2026">
+  <div class="section-head">
+    <div class="section-icon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><rect x="11" y="10" width="2" height="7" rx="1" fill="#7B3FE4"/><circle cx="12" cy="7.2" r="1.3" fill="#7B3FE4"/></svg>
+    </div>
+    <div><span class="kicker">STEP 03</span><h2>2026年10月改正と「学生除外ルール」</h2></div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 昼間学生は社保加入が「原則免除」！</h3>
+    <p>2026年10月から社保ルールが変わりますが、大学・短大などの正規の昼間学生には「学生除外規定」があります。学業優先のため、バイト先で自分自身が社会保険に入る義務はありません。</p>
+  </div>
+  <div class="sub-card">
+    <h4>⚠️ 免除されないケース</h4>
+    <p>休学中・夜間部・通信生の方や、週30時間以上（フルタイムの3/4以上）働く場合は学生でもバイト先で社保加入が必要になります。</p>
+  </div>
+  <div class="sub-card" style="margin-bottom:0;">
+    <h4>🎯 一番大切なポイント</h4>
+    <p>バイト先の社保加入よりも、「年収150万円を超えて親の健康保険から外れてしまわないこと」を第一優先でシフト管理しましょう！</p>
+  </div>
+</section>
+
+<section id="shift">
+  <div class="section-head">
+    <div class="section-icon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" fill="#fff"/><rect x="3" y="5" width="18" height="4" rx="2" fill="#EC4899"/><rect x="6" y="12" width="3" height="3" fill="#EC4899"/><rect x="10.5" y="12" width="3" height="3" fill="#EC4899"/><rect x="15" y="12" width="3" height="3" fill="#EC4899"/></svg>
+    </div>
+    <div><span class="kicker">STEP 04</span><h2>損をしないシフト管理術</h2></div>
+  </div>
+  <div class="shift-card normal">
+    <div class="label">🕐 普段の月（授業がある時期）</div>
+    <div class="amount">月 12.5万円 以内</div>
+    <p>週15〜19時間ペースを目安に勤務を調整。毎月12.5万円以内に抑えれば、年間150万円の枠を確実に守れます！</p>
+  </div>
+  <div class="shift-card holiday">
+    <div class="label">☀️ 夏休み・冬休み（長期休暇）</div>
+    <div class="amount">月 20〜30万円 もOK！</div>
+    <p>税金は1年間（1月〜12月）の合計で計算されるため、長期休みに集中して稼いでも、年間の合計が150万円枠内なら問題ありません！</p>
+  </div>
+</section>
+
+<section id="calculator">
+  <div class="section-head">
+    <div class="section-icon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="3" fill="#fff"/><rect x="7" y="6" width="10" height="3" rx="1" fill="#7B3FE4"/><circle cx="8.5" cy="13" r="1.3" fill="#EC4899"/><circle cx="12" cy="13" r="1.3" fill="#EC4899"/><circle cx="15.5" cy="13" r="1.3" fill="#EC4899"/><circle cx="8.5" cy="17" r="1.3" fill="#EC4899"/><circle cx="12" cy="17" r="1.3" fill="#EC4899"/><circle cx="15.5" cy="17" r="1.3" fill="#EC4899"/></svg>
+    </div>
+    <div><span class="kicker">STEP 05</span><h2>今の稼ぎ方をシミュレーション</h2></div>
+  </div>
+
+  <div class="calc-card">
+    <div class="calc-inner">
+      <div class="calc-title">📊 かんたん年収シミュレーター</div>
+      <div class="calc-sub">時給と勤務時間を入れると、今のペースの年収着地を予測します</div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>時給</label>
+          <div class="input-row">
+            <input type="number" id="hourly" inputmode="numeric" placeholder="1200" value="1200">
+            <span class="unit">円</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>週の勤務時間</label>
+          <div class="input-row">
+            <input type="number" id="weekly" inputmode="numeric" placeholder="16" value="16">
+            <span class="unit">時間</span>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>今年ここまでの累計収入（わかれば）</label>
+        <div class="input-row">
+          <input type="number" id="earned" inputmode="numeric" placeholder="0" value="0">
+          <span class="unit">円</span>
+        </div>
+      </div>
+
+      <div class="result">
+        <div id="statusBadge" class="result-status status-safe">🛡️ 安全ペース</div>
+
+        <div class="result-main">
+          <span class="num" id="forecastNum">0</span>
+          <span class="unit2">円（年間予測）</span>
+        </div>
+        <div class="result-caption" id="forecastCaption">このペースなら150万円の壁内に収まります</div>
+
+        <div class="mini-gauge-track">
+          <div class="mini-gauge-mark" id="miniMark" style="left:0%;"></div>
+        </div>
+
+        <div class="result-rows">
+          <div class="row"><span>今月の月収目安</span><b id="monthlyNum">0円</b></div>
+          <div class="row"><span>150万円まであと</span><b id="remainNum">0円</b></div>
+          <div class="row"><span>安全ライン（月12.5万円）との差</span><b id="diffNum">0円</b></div>
+        </div>
+      </div>
+
+      <button class="copy-btn" id="copyBtn">📋 結果をコピーする</button>
+      <p class="calc-disclaimer">結果は概算です。実際の手続きにあたっては、勤務先・扶養者の健康保険組合等に必ずご確認ください。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="close-mark" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.2 2.6 5 6 5c2 0 3.6 1.1 4.5 2.6C11.4 6.1 13 5 15 5c3.4 0 5.4 3.2 4 6.7C19.5 16.4 12 21 12 21z" fill="#fff" opacity=".8"/></svg>
+  <div class="fname">〇〇さんが安心して<br>学業と両立できるよう、<br>全力でサポートします。</div>
+  <p>ご不明な点は、いつでも担当キャリアパートナーへご相談ください。</p>
+  <div class="sign">CAREER PARTNER ・ STAFF SUPPORT TEAM</div>
+</footer>
+
+<script>
+  // ① パーソナライズ：URLパラメータ ?name=山田花子 で宛名を差し替え
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name');
+  if (name) {
+    document.querySelectorAll('#nameSlot').forEach(el => el.textContent = name);
+    document.querySelectorAll('footer .fname').forEach(el => {
+      el.innerHTML = el.innerHTML.replace('〇〇さんが', name + 'さんが');
+    });
+  }
+
+  // ② 年収シミュレーター
+  const hourlyEl = document.getElementById('hourly');
+  const weeklyEl = document.getElementById('weekly');
+  const earnedEl = document.getElementById('earned');
+
+  const statusBadge = document.getElementById('statusBadge');
+  const forecastNum = document.getElementById('forecastNum');
+  const forecastCaption = document.getElementById('forecastCaption');
+  const monthlyNum = document.getElementById('monthlyNum');
+  const remainNum = document.getElementById('remainNum');
+  const diffNum = document.getElementById('diffNum');
+  const miniMark = document.getElementById('miniMark');
+  const copyBtn = document.getElementById('copyBtn');
+
+  const yen = n => Math.round(n).toLocaleString('ja-JP') + '円';
+
+  function currentRemainingMonths() {
+    const nowMonth = new Date().getMonth() + 1; // 1-12
+    return 12 - nowMonth + 1; // 今月を含む残り月数
+  }
+
+  function calc() {
+    const hourly = Number(hourlyEl.value) || 0;
+    const weekly = Number(weeklyEl.value) || 0;
+    const earned = Number(earnedEl.value) || 0;
+
+    const monthly = hourly * weekly * 4.33;
+    const remainMonths = currentRemainingMonths();
+    const forecast = earned + monthly * remainMonths;
+
+    const WALL = 1500000;
+    const SAFE_MONTHLY = 125000;
+
+    forecastNum.textContent = Math.round(forecast).toLocaleString('ja-JP');
+    monthlyNum.textContent = yen(monthly);
+
+    const remain = WALL - forecast;
+    remainNum.textContent = remain >= 0 ? yen(remain) : '超過 ' + yen(Math.abs(remain));
+
+    const diff = monthly - SAFE_MONTHLY;
+    diffNum.textContent = (diff <= 0 ? '' : '+') + yen(diff);
+
+    // ステータス判定
+    statusBadge.classList.remove('status-safe','status-warn','status-danger');
+    if (forecast <= WALL) {
+      statusBadge.classList.add('status-safe');
+      statusBadge.textContent = '🛡️ 安全ペース';
+      forecastCaption.textContent = 'このペースなら150万円の壁内に収まります';
+    } else if (forecast <= 1590000) {
+      statusBadge.classList.add('status-warn');
+      statusBadge.textContent = '⚠️ 要注意ペース';
+      forecastCaption.textContent = '150万円の社保の壁を超える可能性があります。シフトの見直しがおすすめです';
+    } else {
+      statusBadge.classList.add('status-danger');
+      statusBadge.textContent = '🚨 危険ペース';
+      forecastCaption.textContent = '壁を大きく超える見込みです。今すぐシフトを調整しましょう';
+    }
+
+    // ゲージのマーカー位置（0〜160万円換算）
+    const pct = Math.min(Math.max(forecast / 1600000, 0), 1) * 100;
+    miniMark.style.left = pct + '%';
+  }
+
+  [hourlyEl, weeklyEl, earnedEl].forEach(el => el.addEventListener('input', calc));
+  calc();
+
+  copyBtn.addEventListener('click', () => {
+    const text =
+`【年収シミュレーション結果】
+時給：${hourlyEl.value}円 / 週${weeklyEl.value}時間
+年間予測：${forecastNum.textContent}円
+今月の月収目安：${monthlyNum.textContent}
+150万円まであと：${remainNum.textContent}
+判定：${statusBadge.textContent}`;
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = '✅ コピーしました';
+      setTimeout(() => copyBtn.textContent = '📋 結果をコピーする', 1800);
+    });
+  });
+</script>
+
+</body>
+</html>
