@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>親の扶養を外れない！賢いバイト年収＆シフト管理ガイド</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#4A1E7A;
+    --purple:#7B3FE4;
+    --pink:#EC4899;
+    --pink-soft:#FDF2F8;
+    --lavender:#F3E8FF;
+    --lavender-line:#E4D2FA;
+    --ink:#2B1B4A;
+    --ink-soft:#6B5B8A;
+    --danger:#E8590C;
+    --danger-bg:#FFF1E8;
+    --safe:#0EA5A5;
+    --white:#FFFFFF;
+    --shadow: 0 12px 32px -12px rgba(74,30,122,.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans JP","Zen Kaku Gothic New",sans-serif;
+    background: linear-gradient(180deg,#FCF7FF 0%, #FEFBFF 40%, #FFFFFF 100%);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 40px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background: radial-gradient(120% 140% at 15% 0%, #9D4EDD 0%, #7B3FE4 32%, #5B21B6 62%, #3D1466 100%);
+    padding:96px 0 120px;
+    color:#fff;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(closest-side, rgba(255,255,255,.16), transparent) 82% 12%/280px 280px no-repeat,
+      radial-gradient(closest-side, rgba(236,72,153,.35), transparent) 6% 88%/360px 360px no-repeat;
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);
+    backdrop-filter:blur(6px);
+    padding:8px 20px; border-radius:999px;
+    font-size:14px; font-weight:700; letter-spacing:.04em;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;
+    font-size:52px;
+    line-height:1.4;
+    letter-spacing:.01em;
+    text-shadow:0 2px 24px rgba(0,0,0,.15);
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,#FFD9EE,#FFFFFF 60%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    margin-top:22px; font-size:17px; color:#EAD9FF; max-width:600px;
+  }
+  .hero-badge-row{display:flex; gap:14px; margin-top:44px;}
+  .hero-badge{
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28);
+    border-radius:16px; padding:14px 22px; font-size:14px; font-weight:700;
+    display:flex; align-items:center; gap:10px;
+  }
+
+  /* ---------- GAUGE (signature element) ---------- */
+  .gauge-card{
+    position:relative; z-index:2;
+    margin-top:56px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:24px;
+    padding:30px 36px 26px;
+    backdrop-filter:blur(8px);
+  }
+  .gauge-label{font-size:13px; font-weight:700; color:#F3E8FF; letter-spacing:.05em; margin-bottom:16px;}
+  .gauge-track{position:relative; height:14px; border-radius:999px; overflow:visible;
+    background:linear-gradient(90deg,#22D3B6 0%, #22D3B6 60%, #FBBF24 78%, #FB7185 88%, #E11D48 100%);
+  }
+  .gauge-mark{position:absolute; top:-10px; width:2px; height:34px; background:rgba(255,255,255,.6);}
+  .gauge-tag{
+    position:absolute; top:-46px; transform:translateX(-50%);
+    background:#fff; color:var(--danger); font-weight:900; font-size:13px;
+    padding:6px 12px; border-radius:10px; white-space:nowrap; box-shadow:var(--shadow);
+  }
+  .gauge-tag::after{content:""; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%) rotate(45deg);
+    width:10px; height:10px; background:#fff;}
+  .gauge-scale{display:flex; justify-content:space-between; margin-top:14px; font-size:12px; color:#DCC8FF;}
+
+  /* ---------- SECTION ---------- */
+  section{padding:88px 0;}
+  .section-head{margin-bottom:44px; display:flex; align-items:flex-end; gap:18px;}
+  .section-icon{
+    width:52px; height:52px; border-radius:16px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+    box-shadow:var(--shadow);
+  }
+  .section-head h2{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-size:28px; font-weight:900; color:var(--ink);
+  }
+  .section-head .kicker{display:block; font-size:13px; font-weight:700; color:var(--pink); letter-spacing:.08em; margin-bottom:4px;}
+
+  /* two-col cards */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--lavender-line);
+    border-radius:22px;
+    padding:30px 28px;
+    box-shadow: 0 6px 20px -12px rgba(74,30,122,.18);
+    position:relative;
+  }
+  .card .tag{
+    display:inline-block; font-size:12px; font-weight:700; padding:5px 14px;
+    border-radius:999px; margin-bottom:18px; letter-spacing:.02em;
+  }
+  .tag.purple{background:var(--lavender); color:var(--purple-deep);}
+  .tag.pink{background:#FCE7F3; color:#BE185D;}
+  .card h3{font-size:20px; font-weight:900; margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+  .card .highlight-line{
+    background:var(--lavender); border-radius:12px; padding:12px 16px;
+    font-weight:700; font-size:14.5px; color:var(--purple-deep); margin:14px 0;
+  }
+  .card p.desc{font-size:14.5px; color:var(--ink-soft);}
+
+  /* wall cards */
+  .wall-card{
+    background:var(--white); border-radius:22px; padding:30px 26px;
+    border:2px solid var(--lavender-line);
+    box-shadow:0 6px 20px -12px rgba(74,30,122,.15);
+    text-align:left;
+  }
+  .wall-card.danger{
+    border-color:var(--danger);
+    background:linear-gradient(180deg,#FFF9F5,#FFFFFF);
+    box-shadow:0 16px 34px -16px rgba(232,89,12,.4);
+    transform:translateY(-6px);
+  }
+  .wall-badge{
+    display:inline-block; background:var(--danger); color:#fff; font-size:11.5px; font-weight:900;
+    padding:5px 12px; border-radius:999px; margin-bottom:16px;
+  }
+  .wall-num{font-family:"Zen Kaku Gothic New",sans-serif; font-size:38px; font-weight:900; color:var(--danger);}
+  .wall-card:not(.danger) .wall-num{color:var(--purple);}
+  .wall-name{font-size:14px; font-weight:700; color:var(--ink-soft); margin:6px 0 18px;}
+  .wall-card ul{padding-left:18px; font-size:13.5px; color:var(--ink-soft); display:flex; flex-direction:column; gap:8px;}
+  .wall-note{margin-top:20px; font-size:13.5px; color:var(--ink-soft); background:var(--lavender); border-radius:14px; padding:14px 20px;}
+  .wall-note b{color:var(--purple-deep);}
+
+  /* info box */
+  .info-box{
+    background:linear-gradient(120deg,var(--lavender),#FDF2F8);
+    border:1px solid var(--lavender-line);
+    border-left:6px solid var(--purple);
+    border-radius:18px; padding:26px 30px; margin-bottom:24px;
+  }
+  .info-box h3{font-size:18px; font-weight:900; color:var(--purple-deep); margin-bottom:8px; display:flex; gap:10px; align-items:center;}
+  .info-box p{font-size:14.5px; color:var(--ink-soft);}
+  .sub2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .sub-card{background:var(--white); border:1px solid var(--lavender-line); border-radius:16px; padding:22px 24px;}
+  .sub-card h4{font-size:14.5px; font-weight:900; margin-bottom:8px; display:flex; gap:8px; align-items:center;}
+  .sub-card p{font-size:13.5px; color:var(--ink-soft);}
+
+  /* shift cards */
+  .shift-card{border-radius:22px; padding:32px 30px; color:#fff; position:relative; overflow:hidden;}
+  .shift-card.normal{background:linear-gradient(135deg,#7B3FE4,#5B21B6);}
+  .shift-card.holiday{background:linear-gradient(135deg,#EC4899,#DB2777);}
+  .shift-card .label{font-size:13px; font-weight:700; opacity:.85; display:flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .shift-card .amount{font-family:"Zen Kaku Gothic New",sans-serif; font-size:34px; font-weight:900; margin-bottom:12px;}
+  .shift-card p{font-size:13.5px; opacity:.92;}
+
+  footer{
+    background:linear-gradient(135deg,var(--purple-deep),#3D1466);
+    color:#fff; padding:64px 0; text-align:center;
+  }
+  footer p{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-size:24px; font-weight:900; color:#fff; line-height:1.6;
+  }
+
+  .icon{width:26px; height:26px; flex:none;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">🎓 19〜23歳 昼間学生向け</span>
+    <h1>親の扶養を外れない！<br><span>賢いバイト年収＆シフト管理ガイド</span></h1>
+    <div class="hero-badge-row">
+      <div class="hero-badge">💰 税金は年間合計で判定</div>
+      <div class="hero-badge">🗓️ 社会保険は毎月の給料で判定</div>
+      <div class="hero-badge">🛡️ 学生は社保加入が原則免除</div>
+    </div>
+
+    <div class="gauge-card">
+      <div class="gauge-label">年収の壁マップ（年収0〜160万円）</div>
+      <div class="gauge-track" style="margin-top:34px;">
+        <div class="gauge-mark" style="left:83.75%;"><div class="gauge-tag" style="left:0;">150万円 社保の壁</div></div>
+        <div class="gauge-mark" style="left:99.4%;"></div>
+      </div>
+      <div class="gauge-scale"><span>0万円</span><span>50万円</span><span>100万円</span><span>134万円</span><span>150万円</span><span>159万円</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="basic">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v2h16V7l-8-4z" fill="#fff"/><path d="M5 10h2v8H5v-8zm4 0h2v8H9v-8zm4 0h2v8h-2v-8zm4 0h2v8h-2v-8z" fill="#fff"/><path d="M4 20h16v2H4v-2z" fill="#fff"/></svg>
+      </div>
+      <div><span class="kicker">STEP 01</span><h2>超基本！「税金」と「社会保険」の計算ルール</h2></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <span class="tag purple">税金（所得税・住民税）</span>
+        <h3>💰 「1年間の合計」でみる</h3>
+        <div class="highlight-line">1月〜12月の給料の合計で計算</div>
+        <p class="desc">夏休みにドカンと稼いでも、1年間の合計が枠内（150万円等）に収まっていれば問題ありません！</p>
+      </div>
+      <div class="card">
+        <span class="tag pink">社会保険（健康保険・年金）</span>
+        <h3>🗓️ 「毎月の給料」でみる</h3>
+        <div class="highlight-line" style="background:#FCE7F3; color:#BE185D;">毎月のシフトペースが重要</div>
+        <p class="desc">年間合計だけでなく、「毎月いくら稼いでいるか」をチェックされます。毎月の安定した管理が大切です！</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="walls">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v5c0 5-3.4 8.7-8 11-4.6-2.3-8-6-8-11V6l8-4z" fill="#fff"/></svg>
+      </div>
+      <div><span class="kicker">STEP 02</span><h2>意識すべき年収の壁</h2></div>
+    </div>
+    <div class="grid2">
+      <div class="wall-card danger">
+        <span class="wall-badge">絶対超えちゃダメ！</span>
+        <div class="wall-num">150万円</div>
+        <div class="wall-name">親の社会保険の壁</div>
+        <ul>
+          <li>超えると大損！ 親の健康保険から外れ、自分で年間約20万〜の保険料を払うことに。</li>
+          <li>毎月の目安：月12.5万円以内</li>
+        </ul>
+      </div>
+      <div class="wall-card">
+        <div class="wall-num">159万円</div>
+        <div class="wall-name">親の税金控除の壁</div>
+        <ul>
+          <li>19〜23歳は159万円まで親の税金が安くなる（特定親族特別控除）。</li>
+          <li>※ただし150万円を超えると社保で損をするため、実質は150万円が上限！</li>
+        </ul>
+      </div>
+    </div>
+    <p class="wall-note">※参考：本人の住民税は勤労学生控除により<b>134万円</b>までかからないのが目安です（自治体により100万円超で均等割が数千円発生する場合あり）。</p>
+  </section>
+
+  <section id="rule2026">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><rect x="11" y="10" width="2" height="7" rx="1" fill="#7B3FE4"/><circle cx="12" cy="7.2" r="1.3" fill="#7B3FE4"/></svg>
+      </div>
+      <div><span class="kicker">STEP 03</span><h2>2026年10月改正と「学生除外ルール」</h2></div>
+    </div>
+
+    <div class="info-box">
+      <h3>💡 昼間学生はバイト先での社会保険加入が「原則免除」！</h3>
+      <p>2026年10月から社保ルールが変わりますが、大学・短大などの正規の昼間学生には「学生除外規定」があります。学業優先のため、バイト先で自分自身が社会保険に入る義務はありません。</p>
+    </div>
+    <div class="sub2">
+      <div class="sub-card">
+        <h4>⚠️ 免除されないケース</h4>
+        <p>休学中・夜間部・通信生の方や、週30時間以上（フルタイムの3/4以上）働く場合は学生でもバイト先で社保加入が必要になります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>🎯 一番大切なポイント</h4>
+        <p>バイト先の社保加入よりも、「年収150万円を超えて親の健康保険から外れてしまわないこと」を第一優先でシフト管理しましょう！</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="shift">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" fill="#fff"/><rect x="3" y="5" width="18" height="4" rx="2" fill="#EC4899"/><rect x="6" y="12" width="3" height="3" fill="#EC4899"/><rect x="10.5" y="12" width="3" height="3" fill="#EC4899"/><rect x="15" y="12" width="3" height="3" fill="#EC4899"/></svg>
+      </div>
+      <div><span class="kicker">STEP 04</span><h2>損をしない！おすすめのシフト管理術</h2></div>
+    </div>
+    <div class="grid2">
+      <div class="shift-card normal">
+        <div class="label">🕐 普段の月（授業がある時期）</div>
+        <div class="amount">月 12.5万円 以内</div>
+        <p>週15〜19時間ペースを目安に勤務を調整。毎月12.5万円以内に抑えれば、年間150万円の枠を確実に守れます！</p>
+      </div>
+      <div class="shift-card holiday">
+        <div class="label">☀️ 夏休み・冬休み（長期休暇）</div>
+        <div class="amount">月 20〜30万円 もOK！</div>
+        <p>税金は1年間（1月〜12月）の合計で計算されるため、長期休みに集中して稼いでも、年間の合計が150万円枠内なら問題ありません！</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>安心して学業と両立できるよう、全力でサポートします。</p>
+  </div>
+</footer>
+
+</body>
+</html>
