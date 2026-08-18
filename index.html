@@ -199,6 +199,14 @@
     -webkit-appearance:none;
   }
   .field input:focus{outline:2px solid #FFD9EE;}
+  .field select{
+    width:100%; padding:12px 14px; border-radius:12px; border:none;
+    font-size:15px; font-weight:700; color:var(--ink);
+    background:rgba(255,255,255,.95);
+    -webkit-appearance:none; appearance:none;
+  }
+  .field select:focus{outline:2px solid #FFD9EE;}
+  .field .helptext{font-size:11px; color:#DCC8FF; margin-top:6px; line-height:1.5;}
   .field .unit{
     position:absolute; right:14px; top:50%; transform:translateY(-50%);
     font-size:12.5px; font-weight:700; color:var(--ink-soft);
@@ -380,7 +388,28 @@
   <div class="calc-card">
     <div class="calc-inner">
       <div class="calc-title">📊 かんたん年収シミュレーター</div>
-      <div class="calc-sub">時給と勤務時間を入れると、今のペースの年収着地を予測します</div>
+      <div class="calc-sub">扶養の年収は1月〜12月の合計で判定されるため、バイトを始める月によって使える枠が変わります</div>
+
+      <div class="field">
+        <label>今年、バイトを始める（始めた）月</label>
+        <div class="input-row">
+          <select id="startMonth">
+            <option value="1">1月から</option>
+            <option value="2">2月から</option>
+            <option value="3">3月から</option>
+            <option value="4">4月から</option>
+            <option value="5">5月から</option>
+            <option value="6">6月から</option>
+            <option value="7">7月から</option>
+            <option value="8">8月から</option>
+            <option value="9">9月から</option>
+            <option value="10">10月から</option>
+            <option value="11">11月から</option>
+            <option value="12">12月から</option>
+          </select>
+        </div>
+        <div class="helptext" id="workingMonthsText">今年12月までの就労月数：9ヶ月</div>
+      </div>
 
       <div class="field-row">
         <div class="field">
@@ -422,7 +451,7 @@
         <div class="result-rows">
           <div class="row"><span>今月の月収目安</span><b id="monthlyNum">0円</b></div>
           <div class="row"><span>150万円まであと</span><b id="remainNum">0円</b></div>
-          <div class="row"><span>安全ライン（月12.5万円）との差</span><b id="diffNum">0円</b></div>
+          <div class="row"><span id="safeLineLabel">安全ライン（月12.5万円）との差</span><b id="diffNum">0円</b></div>
         </div>
       </div>
 
@@ -433,7 +462,7 @@
 </section>
 
 <footer>
-  <svg class="close-mark" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.2 2.6 5 6 5c2 0 3.6 1.1 4.5 2.6C11.4 6.1 13 5 15 5c3.4 0 5.4 3.2 4 6.7C19.5 16.4 12 21 12 21z" fill="#fff" opacity=".8"/></svg>
+  <svg class="close-mark" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#fff" opacity=".8"/></svg>
   <div class="fname">〇〇さんが安心して<br>学業と両立できるよう、<br>全力でサポートします。</div>
   <p>ご不明な点は、いつでも担当キャリアパートナーへ</p>
   <div class="sign">CAREER PARTNER ・ STAFF SUPPORT TEAM</div>
@@ -451,6 +480,9 @@
   }
 
   // ② 年収シミュレーター
+  const startMonthEl = document.getElementById('startMonth');
+  const workingMonthsText = document.getElementById('workingMonthsText');
+  const safeLineLabel = document.getElementById('safeLineLabel');
   const hourlyEl = document.getElementById('hourly');
   const weeklyEl = document.getElementById('weekly');
   const earnedEl = document.getElementById('earned');
@@ -472,6 +504,7 @@
   }
 
   function calc() {
+    const startMonth = Number(startMonthEl.value) || 1;
     const hourly = Number(hourlyEl.value) || 0;
     const weekly = Number(weeklyEl.value) || 0;
     const earned = Number(earnedEl.value) || 0;
@@ -480,8 +513,14 @@
     const remainMonths = currentRemainingMonths();
     const forecast = earned + monthly * remainMonths;
 
+    // 扶養の年収は1月〜12月の合計で判定されるため、開始月からの就労月数を基準に安全ラインを再計算
+    const workingMonths = 12 - startMonth + 1; // 開始月〜12月
+    workingMonthsText.textContent = `今年12月までの就労月数：${workingMonths}ヶ月`;
+
     const WALL = 1500000;
-    const SAFE_MONTHLY = 125000;
+    const SAFE_MONTHLY = WALL / workingMonths;
+    const safeLineManYen = (SAFE_MONTHLY / 10000).toFixed(1).replace(/\.0$/, '');
+    safeLineLabel.textContent = `安全ライン（月${safeLineManYen}万円）との差`;
 
     forecastNum.textContent = Math.round(forecast).toLocaleString('ja-JP');
     monthlyNum.textContent = yen(monthly);
@@ -497,7 +536,7 @@
     if (forecast <= WALL) {
       statusBadge.classList.add('status-safe');
       statusBadge.textContent = '🛡️ 安全ペース';
-      forecastCaption.textContent = 'このペースなら150万円の壁内に収まります';
+      forecastCaption.textContent = `${startMonth}月から今のペースなら150万円の壁内に収まります`;
     } else if (forecast <= 1590000) {
       statusBadge.classList.add('status-warn');
       statusBadge.textContent = '⚠️ 要注意ペース';
@@ -513,12 +552,16 @@
     miniMark.style.left = pct + '%';
   }
 
-  [hourlyEl, weeklyEl, earnedEl].forEach(el => el.addEventListener('input', calc));
+  // 開始月の初期値を「今月」に設定
+  startMonthEl.value = String(new Date().getMonth() + 1);
+
+  [startMonthEl, hourlyEl, weeklyEl, earnedEl].forEach(el => el.addEventListener('input', calc));
   calc();
 
   copyBtn.addEventListener('click', () => {
     const text =
 `【年収シミュレーション結果】
+開始月：${startMonthEl.value}月から（就労月数：${workingMonthsText.textContent.replace('今年12月までの就労月数：','')}）
 時給：${hourlyEl.value}円 / 週${weeklyEl.value}時間
 年間予測：${forecastNum.textContent}円
 今月の月収目安：${monthlyNum.textContent}
