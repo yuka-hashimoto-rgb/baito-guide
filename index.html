@@ -240,6 +240,10 @@
   .result-rows{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
   .result-rows .row{display:flex; justify-content:space-between; font-size:12.5px; color:#F3E8FF;}
   .result-rows .row b{font-size:13.5px; color:#fff; font-weight:900;}
+  .formula-note{
+    font-size:11px; color:#DCC8FF; background:rgba(255,255,255,.08);
+    border-radius:8px; padding:8px 10px; margin-top:-2px;
+  }
 
   .copy-btn{
     margin-top:18px; width:100%; padding:13px; border-radius:12px; border:none;
@@ -408,7 +412,7 @@
             <option value="12">12月から</option>
           </select>
         </div>
-        <div class="helptext" id="workingMonthsText">今年12月までの就労月数：9ヶ月</div>
+        <div class="helptext" id="workingMonthsText">その年の12月までの就労月数：9ヶ月</div>
       </div>
 
       <div class="field-row">
@@ -425,6 +429,7 @@
             <input type="number" id="weekly" inputmode="numeric" placeholder="16" value="16">
             <span class="unit">時間</span>
           </div>
+          <div class="helptext">1ヶ月は平均4.33週（52週÷12ヶ月）として計算します</div>
         </div>
       </div>
       <div class="field">
@@ -449,7 +454,8 @@
         </div>
 
         <div class="result-rows">
-          <div class="row"><span>今月の月収目安</span><b id="monthlyNum">0円</b></div>
+          <div class="row"><span>月あたりの収入目安</span><b id="monthlyNum">0円</b></div>
+          <div class="formula-note" id="formulaNote">時給1,200円 × 週16時間 × 4.33週 ＝ 月収の目安</div>
           <div class="row"><span>150万円まであと</span><b id="remainNum">0円</b></div>
           <div class="row"><span id="safeLineLabel">安全ライン（月12.5万円）との差</span><b id="diffNum">0円</b></div>
         </div>
@@ -491,17 +497,13 @@
   const forecastNum = document.getElementById('forecastNum');
   const forecastCaption = document.getElementById('forecastCaption');
   const monthlyNum = document.getElementById('monthlyNum');
+  const formulaNote = document.getElementById('formulaNote');
   const remainNum = document.getElementById('remainNum');
   const diffNum = document.getElementById('diffNum');
   const miniMark = document.getElementById('miniMark');
   const copyBtn = document.getElementById('copyBtn');
 
   const yen = n => Math.round(n).toLocaleString('ja-JP') + '円';
-
-  function currentRemainingMonths() {
-    const nowMonth = new Date().getMonth() + 1; // 1-12
-    return 12 - nowMonth + 1; // 今月を含む残り月数
-  }
 
   function calc() {
     const startMonth = Number(startMonthEl.value) || 1;
@@ -510,12 +512,13 @@
     const earned = Number(earnedEl.value) || 0;
 
     const monthly = hourly * weekly * 4.33;
-    const remainMonths = currentRemainingMonths();
-    const forecast = earned + monthly * remainMonths;
 
-    // 扶養の年収は1月〜12月の合計で判定されるため、開始月からの就労月数を基準に安全ラインを再計算
+    // 扶養の年収は1月〜12月の合計で判定されるため、
+    // 「開始月〜12月」の就労月数をそのまま年間予測に使う（今月からの残り月数は使わない）
     const workingMonths = 12 - startMonth + 1; // 開始月〜12月
-    workingMonthsText.textContent = `今年12月までの就労月数：${workingMonths}ヶ月`;
+    workingMonthsText.textContent = `その年の12月までの就労月数：${workingMonths}ヶ月`;
+
+    const forecast = earned + monthly * workingMonths;
 
     const WALL = 1500000;
     const SAFE_MONTHLY = WALL / workingMonths;
@@ -524,6 +527,7 @@
 
     forecastNum.textContent = Math.round(forecast).toLocaleString('ja-JP');
     monthlyNum.textContent = yen(monthly);
+    formulaNote.textContent = `時給${hourly.toLocaleString('ja-JP')}円 × 週${weekly}時間 × 4.33週 ＝ ${yen(monthly)}`;
 
     const remain = WALL - forecast;
     remainNum.textContent = remain >= 0 ? yen(remain) : '超過 ' + yen(Math.abs(remain));
@@ -561,10 +565,10 @@
   copyBtn.addEventListener('click', () => {
     const text =
 `【年収シミュレーション結果】
-開始月：${startMonthEl.value}月から（就労月数：${workingMonthsText.textContent.replace('今年12月までの就労月数：','')}）
+開始月：${startMonthEl.value}月から（就労月数：${workingMonthsText.textContent.replace('その年の12月までの就労月数：','')}）
 時給：${hourlyEl.value}円 / 週${weeklyEl.value}時間
 年間予測：${forecastNum.textContent}円
-今月の月収目安：${monthlyNum.textContent}
+月あたりの収入目安：${monthlyNum.textContent}（${formulaNote.textContent}）
 150万円まであと：${remainNum.textContent}
 判定：${statusBadge.textContent}`;
     navigator.clipboard.writeText(text).then(() => {
